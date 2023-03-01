@@ -1,0 +1,45 @@
+@use './variables' as *;
+
+// TODO:
+    // adjust card sizes so there is no scroll. 
+
+.cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 60vw;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+
+    .card {
+        margin: 7px;
+        flex-basis: 20%;
+        border-radius: 15px;
+        height: 200px;
+
+        .front {
+            display: none;
+            background-color: peachpuff;
+            height: 100%;
+            text-align: center;
+            border-radius: 15px;
+            border: grey solid 2px;
+        }
+
+        // currently have CSS settings for on hover, but will remove once we have JS event listener
+        .front:hover,
+        .back:hover {
+            transform: rotateY(180deg);
+            transition: transform (3s);
+        }
+
+        .back {
+            background-color: #ccdbae;
+            height: 100%;
+            text-align: center;
+            border-radius: 15px;
+            border: grey solid 2px;
+        }
+    }
+}

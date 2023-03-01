@@ -1,1 +1,10 @@
-@use './partial/variables';
+@use './variables' as *;
+
+main {
+    text-align: center;
+}
+
+.message {
+    height: 23px;
+    margin: 20px 0;
+}

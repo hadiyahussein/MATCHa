@@ -1,8 +1,15 @@
-@import './variables';
+
 
 header{
     .wrapper{
     display: flex;
     justify-content: space-between;
-   }
+    }
+    h1 {
+        margin: 0px;
+    }
+    button {
+        background-color: none;
+        border: none;
+    }
 }

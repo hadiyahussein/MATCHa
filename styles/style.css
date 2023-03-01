@@ -259,12 +259,13 @@ img {
   display: block;
 }
 
-@font-face {
-  font-family: "Pixel";
-  src: url("../fonts/redAlert.ttf");
-  font-weight: 500;
-  font-style: normal;
+h1,
+h2,
+h3,
+p {
+  margin: 0px;
 }
+
 header .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -273,10 +274,74 @@ header .wrapper {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
+header h1 {
+  margin: 0px;
+}
+header button {
+  background-color: none;
+  border: none;
+}
 
-@font-face {
-  font-family: "Pixel";
-  src: url("../fonts/redAlert.ttf");
-  font-weight: 500;
-  font-style: normal;
+main {
+  text-align: center;
+}
+
+.message {
+  height: 23px;
+  margin: 20px 0;
+}
+
+.cardsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 60vw;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+.cardsContainer .card {
+  margin: 7px;
+  -ms-flex-preferred-size: 20%;
+      flex-basis: 20%;
+  border-radius: 15px;
+  height: 200px;
+}
+.cardsContainer .card .front {
+  display: none;
+  background-color: peachpuff;
+  height: 100%;
+  text-align: center;
+  border-radius: 15px;
+  border: grey solid 2px;
+}
+.cardsContainer .card .front:hover,
+.cardsContainer .card .back:hover {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  -webkit-transition: -webkit-transform 3s;
+  transition: -webkit-transform 3s;
+  transition: transform 3s;
+  transition: transform 3s, -webkit-transform 3s;
+}
+.cardsContainer .card .back {
+  background-color: #ccdbae;
+  height: 100%;
+  text-align: center;
+  border-radius: 15px;
+  border: grey solid 2px;
+}
+
+footer {
+  background: #caf7b7;
+}
+footer p {
+  text-align: center;
 }
