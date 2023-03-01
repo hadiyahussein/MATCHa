@@ -1,0 +1,30 @@
+@import './variables';
+
+
+
+html {
+    font-size: 125%;
+    font-family:$basefont;
+}
+
+body {
+    background-color:$primaryhighlight;
+}
+.wrapper {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+

@@ -1,0 +1,34 @@
+{
+    "cards": [
+        {
+            "src": "./assets/img-1.jpg",
+            "alt": "string",
+            "revealed": "false"
+        },
+        {
+            "src": "./assets/img-2.jpg",
+            "alt": "string",
+            "revealed": "false"
+        },
+        {
+            "src": "./assets/img-3.jpg",
+            "alt": "string",
+            "revealed": "false"
+        },
+        {
+            "src": "./assets/img-4.jpg",
+            "alt": "string",
+            "revealed": "false"
+        },
+        {
+            "src": "./assets/img-5.jpg",
+            "alt": "string",
+            "revealed": "false"
+        },
+        {
+            "src": "./assets/img-6.jpg",
+            "alt": "string",
+            "revealed": "false"
+        }
+    ]
+}

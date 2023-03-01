@@ -225,3 +225,58 @@ html {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
+@font-face {
+  font-family: "Pixel";
+  src: url("../fonts/redAlert.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+html {
+  font-size: 125%;
+  font-family: "Pixel";
+}
+
+body {
+  background-color: #D9DCE6;
+}
+
+.wrapper {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+@font-face {
+  font-family: "Pixel";
+  src: url("../fonts/redAlert.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+header .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@font-face {
+  font-family: "Pixel";
+  src: url("../fonts/redAlert.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
