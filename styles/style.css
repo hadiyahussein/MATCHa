@@ -271,6 +271,14 @@ a {
   text-decoration: none;
 }
 
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block !important;
+}
+
 header .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -321,7 +329,6 @@ main {
   height: 200px;
 }
 .cardsContainer .card .front {
-  display: none;
   background-color: peachpuff;
   height: 100%;
   text-align: center;
@@ -330,16 +337,8 @@ main {
 .cardsContainer .card .front img {
   border-radius: 15px;
 }
-.cardsContainer .card .front:hover,
-.cardsContainer .card .back:hover {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
-  -webkit-transition: -webkit-transform 3s;
-  transition: -webkit-transform 3s;
-  transition: transform 3s;
-  transition: transform 3s, -webkit-transform 3s;
-}
 .cardsContainer .card .back {
+  display: none;
   background-color: #ccdbae;
   height: 100%;
   text-align: center;

@@ -4,40 +4,101 @@ import {getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.17.2/
 
 const database = getDatabase(firebaseInfo)
 const dbRef = ref(database);
-const cardsRef = ref(database, 'cards');
+// const cardsRef = ref(database, '/cards');
 const ulElement = document.querySelector('ul');
+
+// get(cardsRef).then((data) => {
+//     console.log(data.val())
+// });
 
 get(dbRef).then((snapshot) => {
     const data = snapshot.val();
     const cards = data.cards;
-
+    
     const cardPickList = [...cards, ...cards];
     const shuffledArray = shuffleArray(cardPickList);
-    
     cardPickList.forEach(function(card) {
         // Create li element and add .card class
         const liElement = document.createElement('li');
         liElement.classList.add('card');
-        console.log(liElement);
+        liElement.setAttribute('img', `${card.src}`);
         
         // Create div element and add .front class, append to li Element
         const frontDiv = document.createElement('div');
         frontDiv.classList.add('front');
         frontDiv.innerHTML = "testing testing"
-        console.log(frontDiv);
         liElement.appendChild(frontDiv);
 
         // Create div element and add .back class, append to li Element
         const backDiv = document.createElement('div');
         backDiv.classList.add('back');
         backDiv.innerHTML = `<img src="${card.src}" alt="${card.alt}">`
+        backDiv.setElement = ('image', `${card.src}`);
         liElement.appendChild(backDiv);
-
         // Append li element to ul element
         ulElement.appendChild(liElement);
 
     })
+    const obj = setInterval(flipCards, 1000);
+    let cnt = 0;
+    function flipCards() {
+        document.querySelectorAll('.card').forEach(card => {
+            const frontDiv = card.querySelector('.front');
+            const backDiv = card.querySelector('.back');
+
+            if (cnt < 3) {
+                frontDiv.style.display = 'none';
+                backDiv.style.display = 'block';
+            } else {
+                frontDiv.style.display = 'block';
+                backDiv.style.display = 'none';
+            }
+        });
+        console.log(cnt)
+        cnt++;
+
+        if (cnt === 9) {
+            clearInterval(obj);
+        }
+    }
+
+    // GAME STARTS, USER NEEDS TO CHOOSE CARDS
+
+    let endOfTurn = false;
+    let revealedCount = 0;
+    
+    document.querySelectorAll('.card').forEach((card) => {
+        card.addEventListener('click', (event) => {
+            // if endOfTurn = false || revealed variabslale is equal to true, then return
+            let card1 = "";
+            let card2 = "";
+            if (card.dataset.revealed === 'true' || endOfTurn === true) {
+                return;
+            }
+            const frontDiv = card.querySelector('.front');
+            const backDiv = card.querySelector('.back');
+            frontDiv.style.display = 'none';
+            backDiv.style.display = 'block';
+            card.dataset.revealed = true;
+
+            if (revealedCount === 0) {
+                card1 = card.getAttribute('img');
+                revealedCount++;
+                console.group(card1);
+                console.log(revealedCount);
+            } else {
+                card2 = card.getAttribute('img');
+                revealedCount = 0;
+                console.log(card2);
+                endOfTurn = true;
+            }
+        });
+    });
 });
+
+
+
+
 
 
 // Create function to shuffle the cardPickList array
@@ -49,7 +110,26 @@ function shuffleArray(array) {
 }
 
 
+let counter = 0;
+let firstSelection = "";
+let secondSelection = "";
+const pickArray = document.querySelectorAll('.card');
+pickArray.forEach((card) => {
+    pickArray.addEventListener('click', () => {
+        card.classList.add('clicked');
 
+        if (counter === 0) {
+            firstSelection = card.getAttribute('img'); 
+            counter++;
+        } else {
+            secondSelection = card.getAttribute('img');
+            counter = 0;
+        }
+
+        console.log(firstSelection);
+        console.log(secondSelection);        
+    })
+})
 
 // Add SDKs for Firebase products that we will use 
 // Use document.querySelector() to get JS objects:
