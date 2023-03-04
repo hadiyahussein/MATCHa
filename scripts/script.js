@@ -1,7 +1,3 @@
-// TODO: 
-    // Fix conditionals for matches or non-matches. Currently card1 === card2 is not working.
-
-    
     // Set up Firebase database, including initializing our database and our dbRef
     import firebaseInfo from './firebase.js';
     import {getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js"
@@ -74,13 +70,16 @@
     let endOfTurn = false;
     let revealedCount = 0;
     let pairs = 0;
+    let card1 = "";
+    let card2 = "";
+    let card1Img = '';
+    let card2Img = '';
 
 // addEventListener to .card div - when clicked 
 document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', (event) => {
             // Stop user from clicking revealed cards. if endOfTurn = true || is revealed
-            let card1 = "";
-            let card2 = "";
+           
             if (card.dataset.revealed === 'true' || endOfTurn === true) {
                 return;
             }
@@ -93,19 +92,22 @@ document.querySelectorAll('.card').forEach((card) => {
             
             if (revealedCount === 0) {
                 // select card 1
-                card1 = card.getAttribute('img');
+                card1 = card 
+                card1Img = card1.getAttribute('img');
                 revealedCount++;
-                console.log('this is card1' + card1);
+                console.log("The image source of card 1 is " +card1Img);
+
 
             } else {
                 // select card 2
-                card2 = card.getAttribute('img');
+                card2 = card
+                card2Img = card2.getAttribute('img');
                 revealedCount = 0;
-                console.log('this is card2' + card2);
+                console.log("The image source of card 2 is " + card2Img);
                 endOfTurn = true;
                 
                     // CONDITIONALS
-                    if (card1 === card2) {
+                    if (card1Img == card2Img) {
                         // if cards1 and card2 match
                         // make .message div = it matched! for 3s
                         // clear .message div
