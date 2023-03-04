@@ -18,7 +18,7 @@
         border-radius: 15px;
         height: 200px;
         .front {
-            display: none;
+            
             background-color: peachpuff;
             height: 100%;
             text-align: center;
@@ -28,12 +28,13 @@
             }
         }
         // currently have CSS settings for on hover, but will remove once we have JS event listener
-        .front:hover,
-        .back:hover {
-            transform: rotateY(180deg);
-            transition: transform (3s);
-        }
+        // .front:hover,
+        // .back:hover {
+        //     transform: rotateY(180deg);
+        //     transition: transform (3s);
+        // }
         .back {
+            display: none;
             background-color: #ccdbae;
             height: 100%;
             text-align: center;

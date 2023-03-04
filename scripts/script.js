@@ -4,27 +4,28 @@ import {getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.17.2/
 
 const database = getDatabase(firebaseInfo)
 const dbRef = ref(database);
-const cardsRef = ref(database, 'cards');
+const cardsRef = ref(database, '/cards');
 const ulElement = document.querySelector('ul');
+
+get(cardsRef).then((data) => {
+    console.log(data.val())
+});
 
 get(dbRef).then((snapshot) => {
     const data = snapshot.val();
     const cards = data.cards;
-
+    
     const cardPickList = [...cards, ...cards];
     const shuffledArray = shuffleArray(cardPickList);
-    
     cardPickList.forEach(function(card) {
         // Create li element and add .card class
         const liElement = document.createElement('li');
         liElement.classList.add('card');
-        console.log(liElement);
         
         // Create div element and add .front class, append to li Element
         const frontDiv = document.createElement('div');
         frontDiv.classList.add('front');
         frontDiv.innerHTML = "testing testing"
-        console.log(frontDiv);
         liElement.appendChild(frontDiv);
 
         // Create div element and add .back class, append to li Element
@@ -32,15 +33,67 @@ get(dbRef).then((snapshot) => {
         backDiv.classList.add('back');
         backDiv.innerHTML = `<img src="${card.src}" alt="${card.alt}">`
         liElement.appendChild(backDiv);
-
         // Append li element to ul element
         ulElement.appendChild(liElement);
 
     })
+    const obj = setInterval(flipCards, 1000);
+    let cnt = 0;
+    function flipCards() {
+        document.querySelectorAll('.card').forEach(card => {
+            const frontDiv = card.querySelector('.front');
+            const backDiv = card.querySelector('.back');
+
+            if (cnt < 3) {
+                frontDiv.style.display = 'none';
+                backDiv.style.display = 'block';
+            } else {
+                frontDiv.style.display = 'block';
+                backDiv.style.display = 'none';
+            }
+        });
+        console.log(cnt)
+        cnt++;
+
+        if (cnt === 9) {
+            clearInterval(obj);
+        }
+    }
+
+    // GAME STARTS, USER NEEDS TO CHOOSE CARDS
+    document.querySelectorAll('.card').forEach((card) => {
+        // addEventListener to .card div - when clicked
+        card.addEventListener('click', (event) => {
+            let endOfTurn = false;
+            let revealedCount = 0;
+            // if endOfTurn = false || revealed variabslale is equal to true, then return
+            if (card.dataset.revealed === 'true' || endOfTurn === 'true') {
+                return;
+            }
+            const frontDiv = card.querySelector('.front');
+            const backDiv = card.querySelector('.back');
+            frontDiv.style.display = 'none';
+            backDiv.style.display = 'block';
+            card.dataset.revealed = true;
+            const card1 = event.target.nextElementSibling.firstChild.src;
+            const activeCard = card1;
+            console.log(card1);
+            if (revealedCount < 2) {
+                return revealedCount ++;
+                console.log(revealedCount);
+            }else{const card2 = event.target.nextElementSibling.firstChild.src;
+                console.log(card2);
+                endOfTurn = true;
+            }
+        });
+    });
 });
 
 
-// Create function to shuffle the cardPickList array
+
+
+
+
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
