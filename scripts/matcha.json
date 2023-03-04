@@ -8,7 +8,7 @@
         {
             "src": "./assets/img-2.jpg",
             "alt": "string",
-            "revealed": "false"
+            "revealed": "false"      
         },
         {
             "src": "./assets/img-3.jpg",
