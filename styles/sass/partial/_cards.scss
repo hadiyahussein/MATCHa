@@ -10,17 +10,17 @@
     align-items: center;
     margin: 0 auto;
     margin-bottom: 20px;
-    padding: 0px 250px;
+    max-width: 60vw;
     .flip {
             transform: rotateY(180deg);
             transition: transform (3s);
         }
     .card {
-        min-width: 145px;
-        margin: 10px;
-        flex-basis: calc(25% - 30px);
+        min-width: 110px;
+        margin: 15px;
+        flex-basis: calc(25% - 50px);
         border-radius: 15px;
-        height: 200px;
+        height: 15vw;
         .front {
             background-color: #ccdbae;
             height: 100%;
@@ -45,3 +45,13 @@
         }
     }
 }
+
+@media (max-width: 934px) {
+    .cardsContainer .card {
+        min-width: 80px;
+        margin: 15px;
+        flex-basis: calc(25% - 50px);
+        height: 15vw;
+        }
+    }
+

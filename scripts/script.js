@@ -51,7 +51,7 @@
             const frontDiv = card.querySelector('.front');
             const backDiv = card.querySelector('.back');
 
-            if (cnt < 4) {
+            if (cnt < 3) {
                 frontDiv.style.display = 'none';
                 backDiv.style.display = 'block';
             } else {
@@ -61,7 +61,7 @@
         });
         cnt++;
 
-        if (cnt === 5) {
+        if (cnt === 4) {
             clearInterval(obj);
         }
     }
@@ -93,10 +93,10 @@
         card.addEventListener('click', (event) => {
                 // Stop user from clicking revealed cards. if endOfTurn = true || is revealed
 
-                card.classList.toggle('flip');
                 if (card.dataset.revealed === 'true' || endOfTurn === true) {
                     return;
                 }
+                card.classList.toggle('flip');
                 message.textContent = '';
                 const frontDiv = card.querySelector('.front');
                 const backDiv = card.querySelector('.back');
@@ -135,7 +135,7 @@
                             // decrease cardCount by 2
                             // cardPairs += 1
                             // revealedCount = 0
-                            message.textContent = 'That was a match!';
+                                message.textContent = 'That was a MATCHa!';
                             pairs++;
                             revealedCount = 0;
                             endOfTurn = false;
@@ -155,7 +155,7 @@
                                 // clear .message div
                                 // increment the number of attempts made **
                                 // revealedCount = 0
-                            message.textContent = 'That was not a match!';
+                            message.textContent = 'That was not a MATCHa!';
                             
                             setTimeout(() => {
                                 card.querySelector('.front').style.display = 'block';
@@ -185,6 +185,7 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
+
 
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));

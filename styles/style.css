@@ -301,12 +301,13 @@ main {
 
 .message {
   height: 23px;
-  margin: 20px 0;
+  margin-top: 15px;
+  color: #84965d;
 }
 
 .pairsMatched {
   height: 23px;
-  margin: 20px 0;
+  margin-bottom: 15px;
 }
 
 .cardsContainer {
@@ -323,7 +324,7 @@ main {
           align-items: center;
   margin: 0 auto;
   margin-bottom: 20px;
-  padding: 0px 250px;
+  max-width: 60vw;
 }
 .cardsContainer .flip {
   -webkit-transform: rotateY(180deg);
@@ -334,12 +335,12 @@ main {
   transition: transform 3s, -webkit-transform 3s;
 }
 .cardsContainer .card {
-  min-width: 145px;
-  margin: 10px;
-  -ms-flex-preferred-size: calc(25% - 30px);
-      flex-basis: calc(25% - 30px);
+  min-width: 110px;
+  margin: 15px;
+  -ms-flex-preferred-size: calc(25% - 50px);
+      flex-basis: calc(25% - 50px);
   border-radius: 15px;
-  height: 200px;
+  height: 15vw;
 }
 .cardsContainer .card .front {
   background-color: #ccdbae;
@@ -362,6 +363,15 @@ main {
   border-radius: 15px;
 }
 
+@media (max-width: 934px) {
+  .cardsContainer .card {
+    min-width: 80px;
+    margin: 15px;
+    -ms-flex-preferred-size: calc(25% - 50px);
+        flex-basis: calc(25% - 50px);
+    height: 15vw;
+  }
+}
 footer {
   background: #caf7b7;
 }
