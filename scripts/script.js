@@ -50,7 +50,7 @@
             const frontDiv = card.querySelector('.front');
             const backDiv = card.querySelector('.back');
 
-            if (cnt < 8) {
+            if (cnt < 4) {
                 frontDiv.style.display = 'none';
                 backDiv.style.display = 'block';
             } else {
@@ -61,7 +61,7 @@
         console.log(cnt)
         cnt++;
 
-        if (cnt === 9) {
+        if (cnt === 5) {
             clearInterval(obj);
         }
     }
@@ -75,74 +75,98 @@
     let card1Img = '';
     let card2Img = '';
 
-// addEventListener to .card div - when clicked 
-document.querySelectorAll('.card').forEach((card) => {
-    card.addEventListener('click', (event) => {
-            // Stop user from clicking revealed cards. if endOfTurn = true || is revealed
-           
-            if (card.dataset.revealed === 'true' || endOfTurn === true) {
-                return;
-            }
-            message.textContent = '';
-            const frontDiv = card.querySelector('.front');
-            const backDiv = card.querySelector('.back');
-            frontDiv.style.display = 'none';
-            backDiv.style.display = 'block';
-            card.dataset.revealed = true;
-            
-            if (revealedCount === 0) {
-                // select card 1
-                card1 = card 
-                card1Img = card1.getAttribute('img');
-                revealedCount++;
-                console.log("The image source of card 1 is " +card1Img);
 
+    //Play Again Button
 
-            } else {
-                // select card 2
-                card2 = card
-                card2Img = card2.getAttribute('img');
-                revealedCount = 0;
-                console.log("The image source of card 2 is " + card2Img);
-                endOfTurn = true;
-                
-                    // CONDITIONALS
-                    if (card1Img == card2Img) {
-                        // if cards1 and card2 match
-                        // make .message div = it matched! for 3s
-                        // clear .message div
-                        // increase # of match pairs found **
-                        // cards remain faced up
-                        // set card 1 and 2 - variable revealed key value = true
-                        // decrease cardCount by 2
-                        // cardPairs += 1
-                        // revealedCount = 0
-                        message.textContent = 'That was a match!';
-                        pairs++;
-                        revealedCount = 0;
-                        endOfTurn = false;
-                        if (pairs === 6){
-                            // if cardPairs === 6
-                            // make .message div = YOU WIN! Refresh to play again
-                            message.textContent = 'YOU WIN! Refresh to play again.'
-                        }
-                        
-                    } else {
-                        // if card1 and card2 don't match
-                            // make .message div = cards do not match for 3s
-                            // clear .message div
-                            // increment the number of attempts made **
-                            // cards go faced down 
-                            // revealedCount = 0
-                        message.textContent = 'That was not a match!';
-                        revealedCount = 0;
-                        endOfTurn = false;
-                        card.dataset.revealed = false;
-                        
-                    }
-            } return;
-        });
+    // create variable for .restart element 
+    const restartButton = document.querySelector('.restart');
+
+    // addEventListener on click 
+    restartButton.addEventListener('click', () => {
+      setTimeout(() => {
+        console.log ('workingsrehbs')
+        window.location.reload();
+      }, 500);
     });
+
+    // addEventListener to .card div - when clicked 
+    document.querySelectorAll('.card').forEach((card) => {
+        card.addEventListener('click', (event) => {
+                // Stop user from clicking revealed cards. if endOfTurn = true || is revealed
+            
+                if (card.dataset.revealed === 'true' || endOfTurn === true) {
+                    return;
+                }
+                message.textContent = '';
+                const frontDiv = card.querySelector('.front');
+                const backDiv = card.querySelector('.back');
+                frontDiv.style.display = 'none';
+                backDiv.style.display = 'block';
+                card.dataset.revealed = true;
+                
+                if (revealedCount === 0) {
+                    // select card 1
+                    card1 = card 
+                    card1Img = card1.getAttribute('img');
+                    revealedCount++;
+                    console.log("The image source of card 1 is " +card1Img);
+                    
+
+                } else {
+                    // select card 2
+                    card2 = card
+                    card2Img = card2.getAttribute('img');
+                    revealedCount = 0;
+                    console.log("The image source of card 2 is " + card2Img);
+                    endOfTurn = true;
+                    
+                        // CONDITIONALS
+                        if (card1Img == card2Img) {
+                            // if cards1 and card2 match
+                            // make .message div = it matched! for 3s
+                            // clear .message div
+                            // increase # of match pairs found **
+                            // cards remain faced up
+                            // set card 1 and 2 - variable revealed key value = true
+                            // decrease cardCount by 2
+                            // cardPairs += 1
+                            // revealedCount = 0
+                            message.textContent = 'That was a match!';
+                            pairs++;
+                            revealedCount = 0;
+                            endOfTurn = false;
+                            if (pairs === 6){
+                                // if cardPairs === 6
+                                // make .message div = YOU WIN! Refresh to play again
+                                message.textContent = 'YOU WIN! Refresh to play again.'
+                            }
+                            
+                        } else {
+                            // if card1 and card2 don't match
+                                // make .message div = cards do not match for 3s
+                                // clear .message div
+                                // increment the number of attempts made **
+                                // revealedCount = 0
+                            message.textContent = 'That was not a match!';
+                            revealedCount = 0;
+                            endOfTurn = false;
+                            card.dataset.revealed = false;
+                          
+
+
+                            setTimeout(() => {
+                                card.querySelector('.front').style.display = 'block';
+                                card.querySelector('.back').style.display = 'none';
+                                card1.querySelector('.front').style.display = 'block';
+                                card1.querySelector('.back').style.display = 'none';
+                                card1.dataset.revealed = false;
+                                card.dataset.revealed = false;
+                            }, 4000);
+                            
+                        }
+                } return;
+            });
+        });
 });
 
 // Create function to shuffle the cardPickList array
@@ -152,13 +176,6 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
-
-
-        
-//Play Again Button
-// create variable for .restart element 
-// addEventListener on click
-// use window.location.reload() after 3s. 
 
 //FEATURE(**):
         // Attempt Counter - utilizing revealed count
