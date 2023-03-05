@@ -29,7 +29,7 @@
         // Create div element and add .front class, append to li Element
         const frontDiv = document.createElement('div');
         frontDiv.classList.add('front');
-        frontDiv.innerHTML = "testing testing"
+        frontDiv.innerHTML = "";
         liElement.appendChild(frontDiv);
 
         // Create div element and add .back class, append to li Element
@@ -83,26 +83,30 @@
 
     // addEventListener on click 
     restartButton.addEventListener('click', () => {
-      setTimeout(() => {
+    setTimeout(() => {
         console.log ('workingsrehbs')
         window.location.reload();
-      }, 500);
+    }, 500);
     });
 
     // addEventListener to .card div - when clicked 
     document.querySelectorAll('.card').forEach((card) => {
         card.addEventListener('click', (event) => {
                 // Stop user from clicking revealed cards. if endOfTurn = true || is revealed
-            
+
+                card.classList.toggle('flip');
                 if (card.dataset.revealed === 'true' || endOfTurn === true) {
                     return;
                 }
                 message.textContent = '';
                 const frontDiv = card.querySelector('.front');
                 const backDiv = card.querySelector('.back');
-                frontDiv.style.display = 'none';
+                // await delay(1050);
+                delay(900).then(() => {frontDiv.style.display = 'none';
                 backDiv.style.display = 'block';
                 card.dataset.revealed = true;
+                console.log(card);
+                });
                 
                 if (revealedCount === 0) {
                     // select card 1
@@ -113,6 +117,8 @@
                     
 
                 } else {
+                    // card.classList.toggle('flip');
+
                     // select card 2
                     card2 = card
                     card2Img = card2.getAttribute('img');
@@ -135,6 +141,10 @@
                             pairs++;
                             revealedCount = 0;
                             endOfTurn = false;
+                            
+                            const pairsMatched = document.querySelector('.pairsMatched');
+                            pairsMatched.textContent = `Matched: ${pairs}/6`;
+                            
                             if (pairs === 6){
                                 // if cardPairs === 6
                                 // make .message div = YOU WIN! Refresh to play again
@@ -142,18 +152,14 @@
                             }
                             
                         } else {
+                            
                             // if card1 and card2 don't match
                                 // make .message div = cards do not match for 3s
                                 // clear .message div
                                 // increment the number of attempts made **
                                 // revealedCount = 0
                             message.textContent = 'That was not a match!';
-                            revealedCount = 0;
-                            endOfTurn = false;
-                            card.dataset.revealed = false;
-                          
-
-
+                            
                             setTimeout(() => {
                                 card.querySelector('.front').style.display = 'block';
                                 card.querySelector('.back').style.display = 'none';
@@ -161,10 +167,16 @@
                                 card1.querySelector('.back').style.display = 'none';
                                 card1.dataset.revealed = false;
                                 card.dataset.revealed = false;
-                            }, 4000);
+                                card1.classList.toggle('flip');
+                                card2.classList.toggle('flip');
+
+                                endOfTurn = false; 
+                                card.dataset.revealed = false;
+                                revealedCount = 0;
+                            }, 3000);
                             
-                        }
-                } return;
+                        } 
+            } return;
             });
         });
 });
@@ -176,6 +188,12 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
+
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
+
+
 
 //FEATURE(**):
         // Attempt Counter - utilizing revealed count
