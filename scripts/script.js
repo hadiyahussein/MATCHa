@@ -14,85 +14,88 @@
     const pairsMatched = document.querySelector('.pairsMatched');
     // create variable for revealed key value
     get(dbRef).then((snapshot) => {
-    const data = snapshot.val();
-    // create variable for cardList - the values of the array
-    const cards = data.cards;
-    
-    // create variable for cardPickList - [...cardList, ...cardList]
-    const cardPickList = [...cards, ...cards];
-    const shuffledArray = shuffleArray(cardPickList);
-    cardPickList.forEach(function(card) {
-        // Create li element and add .card class
-        const liElement = document.createElement('li');
-        liElement.classList.add('card');
-        liElement.setAttribute('img', `${card.src}`);
+        const data = snapshot.val();
+        // create variable for cardList - the values of the array
+        const cards = data.cards;
         
-        // Create div element and add .front class, append to li Element
-        const frontDiv = document.createElement('div');
-        frontDiv.classList.add('front');
-        frontDiv.innerHTML = "";
-        liElement.appendChild(frontDiv);
-
-        // Create div element and add .back class, append to li Element
-        const backDiv = document.createElement('div');
-        backDiv.classList.add('back');
-        backDiv.innerHTML = `<img src="${card.src}" alt="${card.alt}">`
-        backDiv.setElement = ('image', `${card.src}`);
-        liElement.appendChild(backDiv);
-        // Append li element to ul element
-        ulElement.appendChild(liElement);
-
-    })
-    // let user preview cards at start of game for a few seconds
-    const obj = setInterval(flipCards, 1000);
-    let cnt = 0;
-    function flipCards() {
-        document.querySelectorAll('.card').forEach(card => {
-            const frontDiv = card.querySelector('.front');
-            const backDiv = card.querySelector('.back');
-
-            if (cnt < 3) {
-                frontDiv.style.display = 'none';
-                backDiv.style.display = 'block';
-            } else {
-                frontDiv.style.display = 'block';
-                backDiv.style.display = 'none';
+        // create variable for cardPickList - [...cardList, ...cardList]
+        const cardPickList = [...cards, ...cards];
+        const shuffledArray = shuffleArray(cardPickList);
+        cardPickList.forEach(function(card) {
+            // Create li element and add .card class
+            const liElement = document.createElement('li');
+            liElement.classList.add('card');
+            liElement.setAttribute('img', `${card.src}`);
+            
+            // Create div element and add .front class, append to li Element
+            const frontDiv = document.createElement('div');
+            frontDiv.classList.add('front');
+            frontDiv.innerHTML = "";
+            liElement.appendChild(frontDiv);
+            
+            // Create div element and add .back class, append to li Element
+            const backDiv = document.createElement('div');
+            backDiv.classList.add('back');
+            backDiv.innerHTML = `<img src="${card.src}" alt="${card.alt}">`
+            backDiv.setElement = ('image', `${card.src}`);
+            liElement.appendChild(backDiv);
+            // Append li element to ul element
+            ulElement.appendChild(liElement);
+            
+        })
+        // let user preview cards at start of game for a few seconds
+        const obj = setInterval(flipCards, 1000);
+        let cnt = 0;
+        function flipCards() {
+            document.querySelectorAll('.card').forEach(card => {
+                const frontDiv = card.querySelector('.front');
+                const backDiv = card.querySelector('.back');
+                
+                if (cnt < 3) {
+                    frontDiv.style.display = 'none';
+                    backDiv.style.display = 'block';
+                } else {
+                    frontDiv.style.display = 'block';
+                    backDiv.style.display = 'none';
+                }
+            });
+            cnt++;
+            
+            if (cnt === 4) {
+                clearInterval(obj);
             }
-        });
-        cnt++;
-
-        if (cnt === 4) {
-            clearInterval(obj);
         }
-    }
-
-    // GAME STARTS, USER NEEDS TO CHOOSE CARDS
-    let endOfTurn = false;
-    let revealedCount = 0;
-    let pairs = 0;
-    let card1 = "";
-    let card2 = "";
-    let card1Img = '';
-    let card2Img = '';
-
-
-    //Play Again Button
-
-    // create variable for .restart element 
-    const restartButton = document.querySelector('.restart');
-
-    // addEventListener on click 
-    restartButton.addEventListener('click', () => {
-    setTimeout(() => {
-        window.location.reload();
-    }, 500);
-    });
-
-    // addEventListener to .card div - when clicked 
-    document.querySelectorAll('.card').forEach((card) => {
-        card.addEventListener('click', (event) => {
+        
+        // GAME STARTS, USER NEEDS TO CHOOSE CARDS
+        let endOfTurn = false;
+        let revealedCount = 0;
+        let pairs = 0;
+        let attemptsMade = 0;
+        let card1 = "";
+        let card2 = "";
+        let card1Img = '';
+        let card2Img = '';
+        // // create variable for div with userAttempts
+        // const userAttempts = document.querySelector('.attemptsMade');
+        
+        
+        //Play Again Button
+        
+        // create variable for .restart element 
+        const restartButton = document.querySelector('.restart');
+        
+        // addEventListener on click 
+        restartButton.addEventListener('click', () => {
+            setTimeout(() => {
+                window.location.reload();
+            }, 500);
+        });
+        
+        // addEventListener to .card div - when clicked 
+        document.querySelectorAll('.card').forEach((card) => {
+            card.addEventListener('click', (event) => {
                 // Stop user from clicking revealed cards. if endOfTurn = true || is revealed
-
+                
                 if (card.dataset.revealed === 'true' || endOfTurn === true) {
                     return;
                 }
@@ -135,7 +138,7 @@
                             // decrease cardCount by 2
                             // cardPairs += 1
                             // revealedCount = 0
-                                message.textContent = 'That was a MATCHa!';
+                            message.textContent = 'That was a MATCHa!';
                             pairs++;
                             revealedCount = 0;
                             endOfTurn = false;
@@ -155,6 +158,7 @@
                                 // clear .message div
                                 // increment the number of attempts made **
                                 // revealedCount = 0
+                            const userAttempts = document.querySelector('.userAttempts')
                             message.textContent = 'That was not a MATCHa!';
                             
                             setTimeout(() => {
@@ -166,12 +170,21 @@
                                 card.dataset.revealed = false;
                                 card1.classList.toggle('flip');
                                 card2.classList.toggle('flip');
-
+                                
                                 endOfTurn = false; 
                                 card.dataset.revealed = false;
                                 revealedCount = 0;
-                            }, 3000);
-                            
+                            }, 2500);
+
+                            attemptsMade ++;
+                            console.log(attemptsMade);
+                            userAttempts.textContent = `Attempts: ${attemptsMade}/6`;
+                            console.log(userAttempts);
+
+                            // If 6 non-match attempts were made, user loses game
+                            if (attemptsMade === 6) {
+                                message.textContent = `YOU LOSE! Refresh to play again.`
+                            }
                         } 
             } return;
             });

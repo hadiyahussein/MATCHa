@@ -305,7 +305,7 @@ main {
 }
 
 .message {
-  height: 23px;
+  height: 50px;
   margin-top: 15px;
   color: #84965d;
 }
@@ -313,6 +313,20 @@ main {
 .pairsMatched {
   height: 23px;
   margin-bottom: 15px;
+}
+
+.userAttempts {
+  height: 23px;
+  margin-bottom: 15px;
+}
+
+.gameUpdates {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 .cardsContainer {
@@ -328,7 +342,6 @@ main {
       -ms-flex-align: center;
           align-items: center;
   margin: 0 auto;
-  margin-bottom: 20px;
   padding: 0 250px;
 }
 .cardsContainer .flip {

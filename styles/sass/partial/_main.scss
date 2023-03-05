@@ -5,11 +5,21 @@ main {
 }
 
 .message {
-    height: 23px;
+    height: 50px;
     margin-top: 15px;
     color: #84965d
 }
+
 .pairsMatched {
     height: 23px;
     margin-bottom: 15px;
+}
+.userAttempts {
+    height: 23px;
+    margin-bottom: 15px;
+}
+
+.gameUpdates {
+    display: flex;
+    justify-content: space-evenly;
 }
