@@ -30,15 +30,6 @@
                 border-radius: 15px;
             }
         }
-    // .card:hover {
-    //     transform: scale(1.03);
-    // }
-        // currently have CSS settings for on hover, but will remove once we have JS event listener
-        // .front:hover,
-        // .back:hover {
-        //     transform: rotateY(180deg);
-        //     transition: transform (3s);
-        // }
         .back {
             display: none;
             background-color: #ccdbae;
@@ -54,4 +45,3 @@
         }
     }
 }
-

@@ -10,7 +10,8 @@
     const ulElement = document.querySelector('ul');
     // create variable for div with message updates
     const message = document.querySelector('.message');
-    
+    // create variable for div with pairsMatched card
+    const pairsMatched = document.querySelector('.pairsMatched');
     // create variable for revealed key value
     get(dbRef).then((snapshot) => {
     const data = snapshot.val();
@@ -58,7 +59,6 @@
                 backDiv.style.display = 'none';
             }
         });
-        console.log(cnt)
         cnt++;
 
         if (cnt === 5) {
@@ -84,7 +84,6 @@
     // addEventListener on click 
     restartButton.addEventListener('click', () => {
     setTimeout(() => {
-        console.log ('workingsrehbs')
         window.location.reload();
     }, 500);
     });
@@ -105,7 +104,6 @@
                 delay(900).then(() => {frontDiv.style.display = 'none';
                 backDiv.style.display = 'block';
                 card.dataset.revealed = true;
-                console.log(card);
                 });
                 
                 if (revealedCount === 0) {
@@ -142,9 +140,8 @@
                             revealedCount = 0;
                             endOfTurn = false;
                             
-                            const pairsMatched = document.querySelector('.pairsMatched');
                             pairsMatched.textContent = `Matched: ${pairs}/6`;
-                            
+
                             if (pairs === 6){
                                 // if cardPairs === 6
                                 // make .message div = YOU WIN! Refresh to play again
