@@ -7,7 +7,10 @@ header{
         margin: 0px;
     }
     button {
-        background-color: #D9DCE6;
+        background-color: #fff;
         border: none;
+    }
+    button:hover {
+        transform: scale(1.2);
     }
 }

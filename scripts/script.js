@@ -54,6 +54,7 @@
                 if (cnt < 3) {
                     frontDiv.style.display = 'none';
                     backDiv.style.display = 'block';
+                    // backDiv.style.transform = 'scaleX(-1)'
                 } else {
                     frontDiv.style.display = 'block';
                     backDiv.style.display = 'none';
@@ -106,6 +107,7 @@
                 // await delay(1050);
                 delay(900).then(() => {frontDiv.style.display = 'none';
                 backDiv.style.display = 'block';
+                backDiv.style.transform = 'scaleX(-1)'
                 card.dataset.revealed = true;
                 });
                 
@@ -126,69 +128,70 @@
                     revealedCount = 0;
                     console.log("The image source of card 2 is " + card2Img);
                     endOfTurn = true;
-                    
-                        // CONDITIONALS
-                        if (card1Img == card2Img) {
-                            // if cards1 and card2 match
-                            // make .message div = it matched! for 3s
-                            // clear .message div
-                            // increase # of match pairs found **
-                            // cards remain faced up
-                            // set card 1 and 2 - variable revealed key value = true
-                            // decrease cardCount by 2
-                            // cardPairs += 1
-                            // revealedCount = 0
-                            message.textContent = 'That was a MATCHa!';
-                            pairs++;
-                            revealedCount = 0;
-                            endOfTurn = false;
-                            
-                            pairsMatched.textContent = `Matched: ${pairs}/6`;
+            
+                // CONDITIONALS
+                if (card1Img == card2Img) {
+                    // if cards1 and card2 match
+                    // make .message div = it matched! for 3s
+                    // clear .message div
+                    // increase # of match pairs found **
+                    // cards remain faced up
+                    // set card 1 and 2 - variable revealed key value = true
+                    // decrease cardCount by 2
+                    // cardPairs += 1
+                    // revealedCount = 0
+                    message.textContent = 'That was a MATCHa!';
+                    pairs++;
+                    revealedCount = 0;
+                    endOfTurn = false;
+                
+                    pairsMatched.textContent = `Matched: ${pairs}/6`;
 
-                            if (pairs === 6){
-                                // if cardPairs === 6
-                                // make .message div = YOU WIN! Refresh to play again
-                                message.textContent = 'YOU WIN! Refresh to play again.'
-                            }
-                            
-                        } else {
-                            
-                            // if card1 and card2 don't match
-                                // make .message div = cards do not match for 3s
-                                // clear .message div
-                                // increment the number of attempts made **
-                                // revealedCount = 0
-                            const userAttempts = document.querySelector('.userAttempts')
-                            message.textContent = 'That was not a MATCHa!';
-                            
-                            setTimeout(() => {
-                                card.querySelector('.front').style.display = 'block';
-                                card.querySelector('.back').style.display = 'none';
-                                card1.querySelector('.front').style.display = 'block';
-                                card1.querySelector('.back').style.display = 'none';
-                                card1.dataset.revealed = false;
-                                card.dataset.revealed = false;
-                                card1.classList.toggle('flip');
-                                card2.classList.toggle('flip');
+                    if (pairs === 6){
+                        // if cardPairs === 6
+                        // make .message div = YOU WIN! Refresh to play again
+                        message.innerHTML = `<h3>YOU WIN!</h3><p>Refresh to play again</p>`;
+                    }
                                 
-                                endOfTurn = false; 
-                                card.dataset.revealed = false;
-                                revealedCount = 0;
-                            }, 2500);
+                } else {
+                    
+                    // if card1 and card2 don't match
+                        // make .message div = cards do not match for 3s
+                        // clear .message div
+                        // increment the number of attempts made **
+                        // revealedCount = 0
+                    const userAttempts = document.querySelector('.userAttempts')
+                    message.textContent = 'That was not a MATCHa!';
+                    
+                    setTimeout(() => {
+                        card.querySelector('.front').style.display = 'block';
+                        card.querySelector('.back').style.display = 'none';
+                        card1.querySelector('.front').style.display = 'block';
+                        card1.querySelector('.back').style.display = 'none';
+                        card1.dataset.revealed = false;
+                        card.dataset.revealed = false;
+                        card1.classList.toggle('flip');
+                        card2.classList.toggle('flip');
+                        
+                        endOfTurn = false; 
+                        card.dataset.revealed = false;
+                        revealedCount = 0;
+                    }, 2500);
 
-                            attemptsMade ++;
-                            console.log(attemptsMade);
-                            userAttempts.textContent = `Attempts: ${attemptsMade}/6`;
-                            console.log(userAttempts);
+                    attemptsMade ++;
+                    console.log(attemptsMade);
+                    userAttempts.textContent = `Attempts: ${attemptsMade}/6`;
+                    console.log(userAttempts);
 
-                            // If 6 non-match attempts were made, user loses game
-                            if (attemptsMade === 6) {
-                                message.textContent = `YOU LOSE! Refresh to play again.`
-                            }
-                        } 
+                    // If 6 non-match attempts were made, user loses game
+                    if (attemptsMade >= 6) {
+                        message.innerHTML = `<h3>YOU LOSE!</h3><p>Refresh to play again</p>`;
+                        
+                    }
+                } 
             } return;
-            });
         });
+    });
 });
 
 // Create function to shuffle the cardPickList array

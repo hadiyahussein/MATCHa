@@ -6,8 +6,12 @@ main {
 
 .message {
     height: 50px;
-    margin-top: 15px;
-    color: #84965d
+    vertical-align: bottom;
+    color: #84965d;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
 }
 
 .pairsMatched {
