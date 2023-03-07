@@ -1,0 +1,104 @@
+@use './variables' as *;
+
+
+.cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 60%;
+    margin-bottom: 30px;
+    margin-left: 13vw;
+
+    .flip {
+        transform: rotateY(180deg);
+        transition: transform (2s);
+    }
+
+    .card {
+
+        margin: 15px;
+        flex-basis: calc(25% - 30px);
+        box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+  
+        .front {
+            text-align: center;
+            border-radius: 5px;
+          
+            img {
+                border-radius: 5px;
+            }
+        }
+        .back {
+            display: none;
+            height: 100%;
+            text-align: center;
+         
+
+           img {
+                border-radius: 5px;
+                width: 100%;
+                height: 100%;
+                transform-origin: center;
+                image-rendering: pixelated;
+              }
+        }
+    }
+}
+
+.gameUpdates {
+
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 15%;
+    font-family: $secondaryfont;
+    padding-left: 45px;
+    p{
+        font-family: $basefont;
+        color:$primaryhighlight;
+        font-size:1.2rem ;
+    }
+
+}
+
+.flexContainer {
+    display: flex;
+    justify-content: center;
+}
+
+
+@media (max-width:972px){
+
+    .cardsContainer{
+        margin-left: 0px;
+        margin-bottom: 0px;
+    }
+    .gameUpdates{
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px;
+        margin-left: 0px;
+    }
+    .flexContainer{
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 500px) {
+    main{
+        display: flex;
+        align-items: center;
+    }
+    .wrapper {
+        width: 90%;
+    }
+}
+
+@media(max-width:428px){
+    .cardsContainer .card{
+        flex-basis: calc(33% - 30px);
+
+    }
+}
+

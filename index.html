@@ -3,10 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=dev`ice-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>MATCHa</title>
+    <link rel="icon" type="image/x-icon" href="./assets/favi.svg">
+    <link rel="stylesheet" href="styles/style.css">
+
 </head>
 <body>
-    
+<header>
+    <div class="wrapper">
+        <h1>MATCHa</h1>
+        <button class="restart"><img src="./assets/refresh.png" alt="refresh button"></button>
+    </div>
+</header>
+<main>
+    <div class="wrapper">
+
+        <!-- RULES -->
+        <div class="message">
+            <!-- You win, matched, not match message appears here -->
+            <h3>HOW TO PLAY</h3>
+            <P>Flip a card and try to match it with another card using your memory</P>
+        </div>
+
+
+        <div class="flexContainer">
+            <!-- CARDS LIST -->
+            <ul class="cardsContainer">
+            </ul>
+            <!-- GAME UPDATES (Attemps, Pairs Matched) -->
+            <div class="gameUpdates"> 
+                <div class="pairsMatched">
+                    <!-- How many pairs count appears here -->
+                    <p>Matched: 0/6</p>
+                </div> <!-- END of .pairsMatched -->
+                <div class="userAttempts">
+                    <!-- How many attempts count appears here -->
+                    <p>Attempts: 0/6</p>
+                </div> <!-- END of .attemptsMade -->
+            </div>
+            <!-- END of .gameUpdates-->
+        </div> <!-- END of flexContainer -->
+
+    </div> <!-- END of .wrapper -->
+</main>
+<footer>
+    <div class="wrapper">
+        <p>Created at <a href="https://junocollege.com/">Juno College</a> By Hadiya & Chelsey</p>
+    </div>  
+</footer>
+
+<script type="module" src="./scripts/script.js"></script>
+
 </body>
 </html>

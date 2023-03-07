@@ -1,0 +1,64 @@
+@use './variables' as *;
+
+html {
+    font-size: 125%;
+    font-family: $basefont;
+}
+
+body {
+
+    background-color:$primarycolor;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    
+}
+.wrapper {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+h1,
+h2,
+h3,
+p{
+    padding-top: 10px;
+    margin-top:10px;
+    margin: 0;
+}
+
+a {
+    color: $secondarycolor;
+    text-decoration: none;
+}
+
+
+
+// MOBILE FONT SIZE
+@media (max-width: 428px) {
+    html{
+        font-size: 16px;
+    }
+}
+
+@media (max-width:972px){
+
+    html{
+        overflow-x: hidden;
+    }
+}

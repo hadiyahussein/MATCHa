@@ -1,0 +1,26 @@
+@use './variables' as *;
+
+
+.message {
+    min-height: 50px;
+    vertical-align: bottom;
+    color: $primaryhighlight;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+    font-family: $secondaryfont;
+}
+
+.pairsMatched {
+    margin-bottom: 15px;
+    font-family: $secondaryfont;
+}
+
+.userAttempts {
+    margin-bottom: 15px;
+    font-family: $basefont;
+    color:$primaryhighlight;
+}
+
+

@@ -1,0 +1,23 @@
+@use './variables' as *;
+
+header{
+    margin:15px 0px;
+
+    .wrapper{
+    display: flex;
+    justify-content: space-between;
+    }
+    h1 {
+        font-size: 2rem;
+        color:$mainhighlight;
+    } 
+    button {
+      background-color: transparent;
+      height: 35px; 
+      width: 55px;
+      border: none;
+    }
+    button:hover {
+        transform: scale(1.2);
+    }
+}
