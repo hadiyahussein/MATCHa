@@ -238,7 +238,20 @@ html {
 }
 
 body {
-  background-color: #D9DCE6;
+  background-color: #2b2a2b;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 
 .wrapper {
@@ -263,22 +276,29 @@ h1,
 h2,
 h3,
 p {
-  margin: 0px;
+  padding-top: 10px;
+  margin-top: 10px;
+  margin: 0;
 }
 
 a {
-  color: black;
+  color: #2C2C2C;
   text-decoration: none;
 }
 
-.hidden {
-  display: none;
+@media (max-width: 428px) {
+  html {
+    font-size: 16px;
+  }
 }
-
-.show {
-  display: block !important;
+@media (max-width: 972px) {
+  html {
+    overflow-x: hidden;
+  }
 }
-
+header {
+  margin: 15px 0px;
+}
 header .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -288,20 +308,49 @@ header .wrapper {
           justify-content: space-between;
 }
 header h1 {
-  margin: 0px;
+  font-size: 2rem;
+  color: white;
 }
 header button {
-  background-color: #D9DCE6;
+  background-color: transparent;
+  height: 35px;
+  width: 55px;
   border: none;
 }
-
-main {
-  text-align: center;
+header button:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 .message {
-  height: 23px;
-  margin: 20px 0;
+  min-height: 50px;
+  vertical-align: bottom;
+  color: #D9DCE6;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.pairsMatched {
+  margin-bottom: 15px;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.userAttempts {
+  margin-bottom: 15px;
+  font-family: "Pixel";
+  color: #D9DCE6;
 }
 
 .cardsContainer {
@@ -316,42 +365,131 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 0 auto;
-  margin-bottom: 20px;
-  padding: 0px 250px;
+  -ms-flex-preferred-size: 60%;
+      flex-basis: 60%;
+  margin-bottom: 30px;
+  margin-left: 13vw;
+}
+.cardsContainer .flip {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  -webkit-transition: -webkit-transform 2s;
+  transition: -webkit-transform 2s;
+  transition: transform 2s;
+  transition: transform 2s, -webkit-transform 2s;
 }
 .cardsContainer .card {
-  min-width: 145px;
-  margin: 10px;
+  margin: 15px;
   -ms-flex-preferred-size: calc(25% - 30px);
       flex-basis: calc(25% - 30px);
-  border-radius: 15px;
-  height: 200px;
+  -webkit-box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 .cardsContainer .card .front {
-  background-color: peachpuff;
-  height: 100%;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 .cardsContainer .card .front img {
-  border-radius: 15px;
+  border-radius: 5px;
 }
 .cardsContainer .card .back {
   display: none;
-  background-color: #ccdbae;
   height: 100%;
   text-align: center;
-  border-radius: 15px;
-  border: grey solid 2px;
 }
 .cardsContainer .card .back img {
-  border-radius: 15px;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  -ms-interpolation-mode: nearest-neighbor;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: -o-pixelated;
+      image-rendering: pixelated;
 }
 
+.gameUpdates {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-preferred-size: 15%;
+      flex-basis: 15%;
+  font-family: "Space Grotesk", sans-serif;
+  margin-left: 45px;
+}
+.gameUpdates p {
+  font-family: "Pixel";
+  color: #D9DCE6;
+  font-size: 1.2rem;
+}
+
+.flexContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media (max-width: 972px) {
+  .cardsContainer {
+    margin-left: 0px;
+    margin-bottom: 0px;
+  }
+  .gameUpdates {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 10px;
+    margin-left: 0px;
+  }
+  .flexContainer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+@media (max-width: 500px) {
+  main {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 80vh;
+  }
+  .wrapper {
+    width: 90%;
+  }
+}
+@media (max-width: 428px) {
+  .cardsContainer .card {
+    -ms-flex-preferred-size: calc(33% - 30px);
+        flex-basis: calc(33% - 30px);
+  }
+}
 footer {
-  background: #caf7b7;
+  background-color: #D9DCE6;
+  margin-top: auto;
 }
 footer p {
   text-align: center;
+  font-family: "Pixel";
+  color: #2C2C2C;
 }

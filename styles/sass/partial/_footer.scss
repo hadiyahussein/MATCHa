@@ -1,7 +1,14 @@
+@use './variables' as *;
+
 footer {
-    background: #caf7b7;
+    
+    background-color:$primaryhighlight;
+    margin-top: auto;
+    
+    
     p {
     text-align: center;
-    
-}
+    font-family: $basefont;
+    color: $secondarycolor;
+    }
 }

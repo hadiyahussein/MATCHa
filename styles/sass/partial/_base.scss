@@ -6,7 +6,14 @@ html {
 }
 
 body {
-    background-color:$primaryhighlight;
+
+    background-color:$primarycolor;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    
 }
 .wrapper {
     max-width: 1200px;
@@ -29,20 +36,29 @@ img {
 h1,
 h2,
 h3,
-p {
-    margin: 0px;
+p{
+    padding-top: 10px;
+    margin-top:10px;
+    margin: 0;
 }
 
 a {
-    color: black;
+    color: $secondarycolor;
     text-decoration: none;
 }
 
-.hidden {
-    display: none;
+
+
+// MOBILE FONT SIZE
+@media (max-width: 428px) {
+    html{
+        font-size: 16px;
+    }
 }
 
-.show {
-    display: block !important;
-}
+@media (max-width:972px){
 
+    html{
+        overflow-x: hidden;
+    }
+}
