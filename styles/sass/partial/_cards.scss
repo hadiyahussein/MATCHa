@@ -96,11 +96,10 @@
     }
 }
 
-@media (max-width:428px){
+@media(max-width:428px){
     .cardsContainer .card{
         flex-basis: calc(33% - 30px);
 
     }
-    
 }
 
