@@ -340,6 +340,7 @@ header button:hover {
       -ms-flex-direction: column;
           flex-direction: column;
   font-family: "Space Grotesk", sans-serif;
+  text-align: center;
 }
 
 .pairsMatched {
