@@ -16,8 +16,10 @@ header{
       height: 35px; 
       width: 55px;
       border: none;
+      cursor: pointer;
     }
-    button:hover {
+    button:hover,
+    button:focus {
         transform: scale(1.2);
     }
 }
