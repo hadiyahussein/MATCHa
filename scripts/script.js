@@ -17,11 +17,26 @@
         const data = snapshot.val();
         // create variable for cardList - the values of the array
         const cards = data.cards;
-        
+
         // create variable for cardPickList - [...cardList, ...cardList]
         const cardPickList = [...cards, ...cards];
-        const shuffledArray = shuffleArray(cardPickList);
-        cardPickList.forEach(function(card) {
+
+        const shuffledArray = () => {
+            let randomCards = [];
+
+            for (let i = 0; i < 12; i++) {
+                const randomIndex = Math.floor(Math.random() * cardPickList.length);
+                randomCards.push(cardPickList[randomIndex]);
+                console.log(randomIndex)
+                cardPickList.splice(randomIndex, 1);
+
+            }
+            console.log(randomCards);
+            return randomCards;
+        }
+        const randomizedCardsArray = shuffledArray(cardPickList);
+
+        randomizedCardsArray.forEach(function(card) {
             // Create li element and add .card class
             const liElement = document.createElement('li');
             liElement.classList.add('card');
@@ -163,7 +178,7 @@
 
                     attemptsMade ++;
                     userAttempts.innerHTML = `<p>Attempts: ${attemptsMade}/6</p>`;
-                   
+                
 
                     // If 6 non-match attempts were made, user loses game
                     if (attemptsMade >= 6) {
@@ -175,15 +190,6 @@
         });
     });
 });
-
-// Create function to shuffle the cardPickList array
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
-
 
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));

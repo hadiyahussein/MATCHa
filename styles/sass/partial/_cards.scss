@@ -91,18 +91,11 @@
         align-items: center;
         .cardsContainer .card {
             margin: 5px;
-            flex-basis: calc(25% - 15px);
+            flex-basis: calc(33% - 10px);
         }
     }
     .wrapper {
         width: 95%;
-    }
-}
-
-@media(max-width:446px){
-    main .cardsContainer .card{
-        flex-basis: calc(33% - 10px);
-
     }
 }
 
