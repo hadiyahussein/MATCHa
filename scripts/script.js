@@ -41,6 +41,7 @@
             const liElement = document.createElement('li');
             liElement.classList.add('card');
             liElement.setAttribute('img', `${card.src}`);
+            liElement.setAttribute('tabindex', '0');
             
             // Create div element and add .front class, append to li Element
             const frontDiv = document.createElement('div');
@@ -103,9 +104,17 @@
                 window.location.reload();
             }, 500);
         });
+
         
         // addEventListener to .card div - when clicked 
         document.querySelectorAll('.card').forEach((card) => {
+
+            card.addEventListener('keydown', function(key) {
+                if (key.keyCode == '13') {
+                    card.click();
+                }
+            });
+    
             card.addEventListener('click', (event) => {
                 // Stop user from clicking revealed cards. if endOfTurn = true || is revealed
                 
